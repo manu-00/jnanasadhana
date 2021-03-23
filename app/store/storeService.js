@@ -1,32 +1,65 @@
-myApp.service('storeService',['$http',function($http){
+myApp.service('storeService', ['$http', function ($http) {
 
-    this.addLang=function(lang){
-        if(lang.languageId==0 || lang.languageId==null){
-         return $http({
-              method: "POST",
-              url:getlanguageURL,
-              data: JSON.stringify(lang)
-         })
+    this.addCat = function (cat) {
+        if (cat.categoryId == 0 || cat.categoryId == null) {
+            return $http({
+                method: "POST",
+                url: "https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/category/v1/createCategory",
+                data: JSON.stringify(cat)
+            })
         }
-        else{
+        else {
             return $http({
                 method: "PUT",
-                url:updatelanguageURL+ lang.languageId,
-                data: JSON.stringify(lang)
-           }) 
+                url: "https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/category/v1/updateCategory",
+                data: JSON.stringify(cat)
+            })
         }
     }
-    this.getallLangs = function(){
+    this.getallCategory = function (pageIndexC, pageSizeC) {
         return $http({
             method: 'GET',
-            url:"https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/language/v1/getAllLanguageByPagination/{pageNumber}/{pageSize}?pageNumber=1&pageSize=1"
+            url: "https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/category/v1/getAllCategoryByPagination/{pageNumber}/{pageSize}?pageNumber=" + pageIndexC + "&pageSize=" + pageSizeC
         });
     }
-    this.deleteLang = function(x){
+    this.deleteCat = function (cat) {
         return $http({
             method: "DELETE",
-            url:deletelanURL+x.languageId
+            url: "https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/category/v1/deleteCategoryById/" + cat.categoryId
         })
     }
+
+    ////////////////////////////////////////////// Magazine service /////////////////////////////////////////////////
+
+    this.addbooks = function (book) {
+        if (book.magazineCourseID == 0 || book.magazineCourseID == null) {
+            return $http({
+                method: "POST",
+                url: "https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/magazine/v1/createMagazineCourse",
+                data: JSON.stringify(book)
+            })
+        }
+        else {
+            return $http({
+                method: "PUT",
+                url: "https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/magazine/v1/updateMagazineCourse",
+                data: JSON.stringify(book)
+            })
+        }
+    }
+    this.getallMagazine = function (pageIndexB, pageSizeB) {
+        return $http({
+            method: 'GET',
+            url: "https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/magazine/v1/getAllMagazineCourseByPagination/{pageNumber}/{pageSize}?pageNumber=" + pageIndexB + "&pageSize=" + pageSizeB
+        });
+    }
+    this.deletebooks = function (book) {
+        return $http({
+            method: "DELETE",
+            url: "https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/magazine/v1/deleteMagazineCourseById/" + book.magazineCourseId
+        })
+    }
+
+    // ////////////////////////////////////////end of magazine service////////////////////////////////////////////
 
 }]);
