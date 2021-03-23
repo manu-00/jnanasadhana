@@ -1,0 +1,114 @@
+<div class="content" ng-controller="blogCtrl">
+  <div class="container-fluid">
+       <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title ">blog details</h4>
+            <p class="card-category"> you can create blog Here</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <button class="btn btn-success" style="float: right;" data-toggle="modal" data-target="#myModal" ng-click="clearForm()"><i class="fa fa-blog-plus fa-2" aria-hidden="true"></i>
+              </button>
+              <table class="table">
+                <thead class=" text-primary">
+                  <tr><th>
+                    ID
+                  </th>
+                  <th>
+                    title
+                  </th>
+                  <th>
+                    description
+                  </th>
+                  <th>
+                    uploadedBy
+                  </th>
+                  <th>
+                    updatedAt
+                  </th>
+                  <th>
+                    Action
+                  </th>
+                </tr></thead>
+                <tbody>
+              
+                  <tr dir-paginate="x in blogs | itemsPerPage: 3">
+                    <td>
+                      {{$index+1}}
+                    </td>
+                    <td>
+                      {{x.title}}
+                    </td>
+                    <td>
+                      {{x.description}}
+                    </td>
+                    <td>
+                      {{x.uploadedBy}}
+                    </td>
+                    <td>
+                      {{x.updatedAt | limitTo:10}}
+                    </td>
+                                   <td class="text-primary">
+                                    <a ng-click="editblog(x)" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square fa-2" aria-hidden="true" style="margin: 5px;font-size: 30px;"></i></a>
+                                    <a ng-click="deleteblog(x)"><i class="fa fa-trash-o fa-2" style="margin: 5px;font-size: 30px;" aria-hidden="true"></i></a>
+
+                    </td>
+
+                  </tr>
+                  
+                </tbody>
+              </table>
+              <div class="card-footer clearfix">
+                <dir-pagination-controls> </dir-pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" ng-click="clearForm()">blog Details</h4>
+          <button type="button" class="close" data-dismiss="modal" ng-click="clearForm()">&times;</button>
+        </div>
+        <div class="modal-body">
+              <div class="card-body">
+              <form name="unitForm" ng-submit="addblogs();">
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="inputEmail4">Title</label>
+                    <input type="hidden" class="form-control" ng-model="blog.blogId">
+                    <input type="name" class="form-control" ng-model="blog.title" placeholder="Title">
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="inputPassword4" >Description</label>
+                    <textarea class="form-control" rows="4" cols="10" ng-model="blog.description">
+                      </textarea>                  </div>
+                   </div>
+                <div class="form-row">
+                    <div class="form-line">
+                      <ul class="list-inline">
+                  <li><input type="file"file-model="myFile"/></li>
+                  <li><button  ng-click="uploadFile($event)"class="btn btn-info">upload me</button></li>
+                  
+                  </ul>
+                      </div>
+                                 
+                </div>
+                         
+                <input type="submit" class="btn btn-info" value="submit" ng-disabled="unitForm.$invalid" style="float: right;">
+              </form>  
+              </div>
+        </div>
+        
+      </div>
+
+</div>

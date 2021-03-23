@@ -1,0 +1,223 @@
+<div class="row clearfix col-12" ng-controller="storeCtrl">
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body ribbon">
+                <div class="ribbon-box green" data-toggle="tooltip" title="" 
+                data-original-title="Total Earnings">5555</div>
+                <a href="professors.html" class="my_sort_cut text-muted">
+                    <i class="fa fa-rupee"></i>
+                    <span>Total Earnings</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body ribbon">
+                <div class="ribbon-box orange" data-toggle="tooltip" title="" 
+                data-original-title="Category">5</div>
+                <a href="professors.html" class="my_sort_cut text-muted">
+                    <i class="fa fa-cart-plus"></i>
+                    <span>Total Category</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body ribbon">
+                <div class="ribbon-box green" data-toggle="tooltip" title="" 
+                data-original-title="No of Books">5</div>
+                <a href="professors.html" class="my_sort_cut text-muted">
+                    <i class="fa fa-book"></i>
+                    <span>Total Book</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body ribbon">
+                <div class="ribbon-box orange" data-toggle="tooltip" title="" 
+                data-original-title="No of Magazine">5</div>
+                <a href="professors.html" class="my_sort_cut text-muted">
+                    <i class="fa fa-newspaper-o"></i>
+                    <span>Total Magazine</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row storerow col-12">
+<div class="col-sm-5">
+    <button class="btn btn-outline-info btn-block" ng-click="lan=true;lanpop=state=statepop=false">Category</button></div>
+<!-- <div class="col-sm-3">
+   <button class="btn btn-outline-info btn-block">Category</button> 
+</div>
+<div class="col-sm-3">
+    <button class="btn btn-outline-info btn-block">Books / Magazine</button> 
+ </div> -->
+ <div class="col-sm-5">
+    <button class="btn btn-outline-info btn-block" ng-click="state=true;statepop=lan=lanpop=false">Books / Magazine</button> 
+ </div>
+</div>
+<!------------------------------------------------------- languages -------------------------------------------->
+<div ng-show="lan">
+    <div><button class="btn btn-info lanbutton" ng-click="lanpop=addlanbtn=true;lan=lanedit=false">add languages</button></div>
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="tab-content">
+                <div class="tab-pane active" id="Dep-all">
+                    <div class="table-responsive">
+                        <div class="table-responsive card">
+                            <table class="table table-hover table-striped table-vcenter text-nowrap mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Created date</th>
+                                        <th>Updated date</th>
+                                        <th>Created By</th>
+                                        <th>Updated By</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in langs" ng-click="lanpop=lanedit=landelete=true;lan=addlanbtn=false">
+                                        <td>{{x.languageId}}</td>
+                                        <td>{{x.languageName}}</td>
+                                        <td>{{x.description}}</td>
+                                        <td>{{x.createdDate}}</td>
+                                        <td>{{x.updatedDate}}</td>
+                                        <td>{{x.createdBy}}</td>
+                                        <td>{{x.updatedBy}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-icon btn-sm" title="View"><i class="fa fa-eye"></i></button>
+                                            <button type="button" class="btn btn-icon btn-sm" title="Edit"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!---------------- language add ---------------->
+<div class="card" ng-show="lanpop">
+    <div class="card-header">
+        <h3 class="card-title">Languages</h3>
+        <div class="card-options">
+            <a href="" ng-click="lanpop=false;lan=true"><i class="fe fe-x"></i></a>
+        </div>
+    </div>
+    <form class="card-body">
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Language Name</label>
+            <div class="col-md-7">
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Language Description</label>
+            <div class="col-md-7">
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label"></label>
+            <div class="col-md-7" style="height: 100px;">
+                <button type="submit" class="btn btn-primary" ng-show="addlanbtn">Add</button>
+                <button type="submit" class="btn btn-primary" ng-show="lanedit">Update</button>
+                <button type="submit" class="btn btn-outline-danger" ng-show="landelete">Delete</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!------------------------------- end of language  ----------------------------------------------------------->
+
+
+<!-------------------------------------------------------- state------------------------------------------------->
+<!-- <div ng-show="state">
+    <div><button class="btn btn-info lanbutton" ng-click="statepop=addstatebtn=true;state=stateedit=false">add state</button></div>
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="tab-content">
+                <div class="tab-pane active" id="Dep-all">
+                    <div class="table-responsive">
+                        <div class="table-responsive card">
+                            <table class="table table-hover table-striped table-vcenter text-nowrap mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Created date</th>
+                                        <th>Updated date</th>
+                                        <th>Created By</th>
+                                        <th>Updated By</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-click="statepop=stateedit=statedelete=true;state=addstatebtn=false">
+                                        <td>id</td>
+                                        <td>state  Name</td>
+                                        <td>state description</td>
+                                        <td>2\12\2012</td>
+                                        <td>3\3\2013</td>
+                                        <td>abc</td>
+                                        <td>xyz</td>
+                                        <td>
+                                            <button type="button" class="btn btn-icon btn-sm" title="View"><i class="fa fa-eye"></i></button>
+                                            <button type="button" class="btn btn-icon btn-sm" title="Edit"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div> -->
+<!---------------- state add ---------------->
+ <!-- <div class="card" ng-show="statepop">
+    <div class="card-header">
+        <h3 class="card-title">States</h3>
+        <div class="card-options ">
+            <a href="" ng-click="statepop=false;state=true"><i class="fe fe-x"></i></a>
+        </div>
+    </div>
+    <form class="card-body">
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">State Name</label>
+            <div class="col-md-7">
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">State Description</label>
+            <div class="col-md-7">
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label"></label>
+            <div class="col-md-7" style="height: 100px;">
+                <button type="submit" class="btn btn-primary" ng-show="addstatebtn">Add</button>
+                <button type="submit" class="btn btn-primary" ng-show="stateedit">Update</button>
+                <button type="submit" class="btn btn-outline-danger" ng-show="statedelete">Delete</button>
+            </div>
+        </div>
+    </form>
+</div> -->
+<!------------------------------------------------ end of state--------------------------------------------------->
