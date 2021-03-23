@@ -6,7 +6,6 @@ angular.module('myApp', [
   'myApp.store',
   'myApp.master',
   'myApp.course',
-  'myApp.pagtest',
   'myApp.version'
 ])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
