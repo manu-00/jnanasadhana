@@ -70,10 +70,28 @@ myApp.controller('storeCtrl', ['$scope', 'storeService', function ($scope, store
     $scope.cat.categoryId = x.categoryId;
   }
   $scope.deleteCat = function () {
-    storeService.deleteCat($scope.cat).then(function (response) {
-      window.alert("deleted");
-    });
-  }
+
+    swal({
+      title: "Are you sure?",
+      // text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        storeService.deleteCat($scope.cat).then(function(){
+          swal("deleted!", {
+            icon: "success",
+          });
+          $scope.loadCategory();
+        });
+      // else {
+      //   swal("Your imaginary file is safe!");
+      // }
+    }
+  });
+}
   $scope.clearCat = function () {
     $scope.cat.categoryName = "";
     $scope.cat.description = "";
@@ -81,14 +99,24 @@ myApp.controller('storeCtrl', ['$scope', 'storeService', function ($scope, store
   }
   $scope.addCat = function () {
     storeService.addCat($scope.cat).then(function (response) {
-      console.log(response.data);
+      $scope.pageChangeC();
       if (response.data.responseCode == 201) {
-        window.alert("success");
+        swal("Done!", "", "success");
       }
       else {
-        window.alert("failed");
+        swal("Failed!", "", "warning");
       }
+      $scope.loadCategory();    
     });
+  }
+  $scope.loadCategory=function(){
+    $scope.catsection=true;$scope.catpop=$scope.bomag=$scope.bomagpop=false;
+  }
+  $scope.addCategory=function(){
+    $scope.catpop=$scope.addcatbtn=true;$scope.catsection=$scope.catedit=false;
+  }
+  $scope.closeCategory=function(){
+    $scope.catpop=false;$scope.catsection=true;
   }
   ////////////////////////////////////// end of category section //////////////////////////////////////////////
 
@@ -111,7 +139,7 @@ myApp.controller('storeCtrl', ['$scope', 'storeService', function ($scope, store
         $scope.totalItemsB = response.data.totalElements;
       });
       console.log($scope.books);
-    })
+    });
   }
   $scope.changePageSizeB = function () {
     $scope.pageIndexB = 0;
@@ -141,8 +169,26 @@ myApp.controller('storeCtrl', ['$scope', 'storeService', function ($scope, store
     $scope.book.magazineCourseId = x.magazineCourseId;
   }
   $scope.deletebooks = function () {
-    storeService.deletebooks($scope.book).then(function (response) {
-      window.alert("deleted");
+
+    swal({
+      title: "Are you sure?",
+      // text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        storeService.deletebooks($scope.book).then(function(){
+          swal("deleted!", {
+            icon: "success",
+          });
+          $scope.loadMag();
+        });
+      }
+      // else {
+      //   swal("Your imaginary file is safe!");
+      // }
     });
   }
   $scope.clearbooks = function () {
@@ -152,13 +198,23 @@ myApp.controller('storeCtrl', ['$scope', 'storeService', function ($scope, store
   }
   $scope.addbooks = function () {
     storeService.addbooks($scope.book).then(function (response) {
-      console.log(response.data);
+      $scope.pageChangeB();
       if (response.data.responseCode == 201) {
-        window.alert("success");
+        swal("Done!", "", "success");
       }
       else {
-        window.alert("failed");
+        swal("Failed!", "", "warning");
       }
+      $scope.loadMag();
     });
+  }
+  $scope.loadMag=function(){
+    $scope.bomag=true;$scope.bomagpop=$scope.catsection=$scope.catpop=false
+  }
+  $scope.addMag=function(){
+    $scope.bomagpop=$scope.addbomagbtn=true;$scope.bomag=$scope.boma=$scope.bomagedit=false
+  }
+  $scope.closeMag=function(){
+    $scope.bomagpop=false;$scope.bomag=true
   }
 }]);

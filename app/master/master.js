@@ -87,9 +87,29 @@ $scope.editLang=function(x){
   console.log($scope.lang);
 }
 $scope.deleteLang= function(){
-  masterService.deleteLang($scope.lang).then(function(response){
-    window.alert("deleted");
+  swal({
+    title: "Are you sure?",
+    // text: "Once deleted, you will not be able to recover this imaginary file!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      masterService.deleteLang($scope.lang).then(function(){
+        $scope.pageChange();
+        swal("deleted!", {
+          icon: "success",
+        });
+        $scope.loadLanguage();
+      }); 
+    }
+     
+    // else {
+    //   swal("Your imaginary file is safe!");
+    // }
   });
+  
 }
 $scope.clearLang= function(){
   $scope.lang.languageName="";
@@ -99,14 +119,25 @@ $scope.clearLang= function(){
 }
 $scope.addLang= function(){
   masterService.addLang($scope.lang).then(function(response){
-    console.log(response.data);
+    $scope.pageChange();
     if(response.data.responseCode==201){
-      window.alert("success");
+      swal("Done!", "", "success");
     }
     else{
-      window.alert("failed");
+      swal("Failed!", "", "warning");
     }
+    $scope.loadLanguage();
   });
+
+}
+$scope.addLanguage=function(){
+  $scope.lanpop=$scope.addlanbtn=true;$scope.lan=$scope.landelete=$scope.lanedit=false
+}
+$scope.loadLanguage=function(){
+  $scope.lan=true;$scope.lanpop=$scope.stat=$scope.statepop=false;
+}
+$scope.closeLanguage=function(){
+  $scope.lanpop=false;$scope.lan=true
 }
 ////////////////////////////////////// end of language section ///////////////////////////////////////////////
 
@@ -166,9 +197,28 @@ $scope.numPagesS="";
     $scope.state.stateId=x.stateId;
   }
   $scope.deleteStat= function(){
-    masterService.deleteStat($scope.state).then(function(response){
-      window.alert("deleted");
+    swal({
+      title: "Are you sure?",
+      // text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        masterService.deleteStat($scope.state).then(function(response){
+          $scope.pagechangeS();
+          swal("deleted!", {
+            icon: "success",
+          });
+          $scope.loadState();
+        });
+      } 
+      // else {
+      //   swal("Your imaginary file is safe!");
+      // }
     });
+    
   }
   $scope.clearStat= function(){
     $scope.state.stateName="";
@@ -177,14 +227,24 @@ $scope.numPagesS="";
   }
   $scope.addStat= function(){
     masterService.addStat($scope.state).then(function(response){
-      console.log(response.data.responseCode);
+      $scope.pagechangeS();
       if(response.data.responseCode==201){
-        window.alert("success");
+        swal("Done!", "", "success");
       }
       else{
-        window.alert("failed");
+        swal("Failed!", "", "warning");
       }
+      $scope.loadState();
     });
+  }
+  $scope.loadState= function(){
+    $scope.stat=true;$scope.statepop=$scope.lan=$scope.lanpop=false
+  }
+  $scope.addState= function(){
+    $scope.statepop=$scope.addstatbtn=true;$scope.stat=$scope.statedit=false
+  }
+  $scope.closeState=function(){
+    $scope.statepop=false;$scope.stat=true
   }
   ////////////////////////////////////// end of state section ///////////////////////////////////////////////
 
