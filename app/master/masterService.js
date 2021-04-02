@@ -30,23 +30,23 @@ myApp.service('masterService',['$http',function($http){
             url:"https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/language/v1/deleteLanguageById/"+lang.languageId
         })
     }
-// //////////////////////////////////////end of language service/////////////////////////////////////////////
+////////////////////////////////////////end of language service/////////////////////////////////////////////
 
-// //////////////////////////////////////////////state service //////////////////////////////////////////////////
+////////////////////////////////////////////////state service //////////////////////////////////////////////////
 
 
 this.addStat=function(state){
-    if(state.stateId==0 || state.stateId==null){
+    if(state.regionId==0 || state.regionId==null){
      return $http({
           method: "POST",
-          url:"https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/state/v1/createState",
+          url:"https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/region/v1/createRegion",
           data: JSON.stringify(state)
      })
     }
     else{
         return $http({
             method: "PUT",
-            url:"https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/state/v1/updateState",
+            url:"https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/region/v1/updateRegion",
             data: JSON.stringify(state)
        }) 
     }
@@ -54,17 +54,15 @@ this.addStat=function(state){
 this.getallStates = function(spageIndex,spageSize){
     return $http({
         method: 'GET',
-        url:"https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/state/v1/getAllStateByPagination/{pageNumber}/{pageSize}?pageNumber="+spageIndex+"&pageSize="+spageSize
+        url:"https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/region/v1/getAllRegionByPagination/{pageNumber}/{pageSize}?pageNumber="+spageIndex+"&pageSize="+spageSize
     });
 }
 this.deleteStat = function(state){
     return $http({
         method: "DELETE",
-        url:"https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/state/v1/deleteStateById/"+state.stateId
+        url:"https://raghunkadur.cloudjiffy.net/RaghuNKadurWeb/region/v1/deleteRegionById/"+state.regionId
     })
 }
 
 // ////////////////////////////////////////////end of state service////////////////////////////////////////////
-
-
 }]);

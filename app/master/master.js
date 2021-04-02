@@ -139,6 +139,7 @@ $scope.loadLanguage=function(){
 $scope.closeLanguage=function(){
   $scope.lanpop=false;$scope.lan=true
 }
+
 ////////////////////////////////////// end of language section ///////////////////////////////////////////////
 
 
@@ -157,7 +158,7 @@ $scope.numPagesS="";
     $scope.states=[];
     masterService.getallStates($scope.spageIndex,$scope.spageSize).then(function(response){
      angular.forEach(response.data.content,function(value){
-       $scope.states.push({stateId:value.stateId,stateName:value.stateName,description:value.description,
+       $scope.states.push({regionId:value.regionId,regionName:value.regionName,description:value.description,
       createdDate:value.insertedDate,updatedDate:value.updatedDate,createdBy:value.createdBy.userName,
       updatedBy:value.updatedBy.userName});
        $scope.totalItemsS=response.data.totalElements;
@@ -188,13 +189,13 @@ $scope.numPagesS="";
       userId: usId
     },
     description: "",
-    stateName: "",
-    stateId:""
+    regionName: "",
+    regionId:""
   };
   $scope.editStat= function(x){
-    $scope.state.stateName=x.stateName;
+    $scope.state.regionName=x.regionName;
     $scope.state.description=x.description;
-    $scope.state.stateId=x.stateId;
+    $scope.state.regionId=x.regionId;
   }
   $scope.deleteStat= function(){
     swal({
@@ -221,9 +222,9 @@ $scope.numPagesS="";
     
   }
   $scope.clearStat= function(){
-    $scope.state.stateName="";
+    $scope.state.regionName="";
     $scope.state.description="";
-    $scope.state.stateId="";
+    $scope.state.regionId="";
   }
   $scope.addStat= function(){
     masterService.addStat($scope.state).then(function(response){
