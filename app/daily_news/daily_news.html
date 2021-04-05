@@ -6,7 +6,7 @@
                     <ol class="breadcrumb page-breadcrumb">
                         <li class="breadcrumb-item"><a href="#">JNANA SAADHANA</a></li>
                         <!-- <li class="breadcrumb-item"><a href="#">University</a></li> -->
-                        <li class="breadcrumb-item active" aria-current="page">Master</li>
+                        <li class="breadcrumb-item active" aria-current="page">Daily News</li>
                     </ol>
                 </div>
                 <!-- <ul class="nav nav-tabs page-header-tab">
@@ -36,7 +36,7 @@
                 data-original-title="Category">5</div>
                 <a href="professors.html" class="my_sort_cut text-muted">
                     <i class="fa fa-cart-plus"></i>
-                    <span>Total Languages: {{totalItemsL}}</span>
+                    <span>Total Magazines: {{totalItemsL}}</span>
                 </a>
             </div>
         </div>
@@ -48,7 +48,7 @@
                 data-original-title="No of Books">5</div>
                 <a href="professors.html" class="my_sort_cut text-muted">
                     <i class="fa fa-book"></i>
-                    <span>Total Regions: {{totalItemsS}}</span>
+                    <span>Total Magazine Courses: {{totalItemsS}}</span>
                 </a>
             </div>
         </div>
@@ -68,7 +68,7 @@
 </div>
 <div class="row storerow col-12">
 <div class="col-sm-5">
-    <button class="btn btn-outline-info btn-block" ng-click="loadLanguage()">Languages</button></div>
+    <button class="btn btn-outline-info btn-block" ng-click="loadDailyMagazine()">Daily Magazines</button></div>
 <!-- <div class="col-sm-3">
    <button class="btn btn-outline-info btn-block">Category</button> 
 </div>
@@ -76,12 +76,12 @@
     <button class="btn btn-outline-info btn-block">Books / Magazine</button> 
  </div> -->
  <div class="col-sm-5">
-    <button class="btn btn-outline-info btn-block" ng-click="loadState()">Regions</button> 
+    <button class="btn btn-outline-info btn-block" ng-click="loadMagazineCourse()">Magazine courses</button> 
  </div>
 </div>
-<!------------------------------------------------------- languages -------------------------------------------->
-<div ng-show="lan">
-    <div><button class="btn btn-info lanbutton" ng-click="addLanguage();clearLang()">add languages</button></div>
+<!------------------------------------------------------- daily magazine -------------------------------------------->
+<div ng-show="dailymagazine">
+    <div><button class="btn btn-info lanbutton" ng-click="addDailyMag();clearDailyMagazine()">add Daily Magazine</button></div>
     <div class="section-body mt-3">
         <div class="container-fluid">
             <div class="tab-content">
@@ -102,7 +102,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="x in langs" ng-click="editLang(x);$parent.lanpop=true;$parent.lanedit=$parent.landelete=true;$parent.lan=$parent.addlanbtn=false;">
+                                    <tr ng-repeat="x in magazines" ng-click="a(x);editDailyMagazine(x);$parent.dailymagazinepop=true;$parent.lanedit=$parent.landelete=true;$parent.lan=$parent.addlanbtn=false;">
                                         <td>{{x.languageId}}</td>
                                         <td>{{x.languageName}}</td>
                                         <td>{{x.description}}</td>
@@ -148,46 +148,42 @@
         </div>
     </div>
 </div>
-<!---------------- language add ---------------->
-<div class="card" ng-show="lanpop">
+<!---------------- daily magazine add ---------------->
+<div class="card" ng-show="dailymagazinepop">
     <div class="card-header">
-        <h3 class="card-title">Languages</h3>
+        <h3 class="card-title">Daily Magazines</h3>
         <div class="card-options">
-            <a href="" ng-click="closeLanguage()"><i class="fe fe-x"></i></a>
+            <a href="" ng-click="closeDailyMagazine()"><i class="fe fe-x"></i></a>
         </div>
     </div>
-    <form class="card-body was-validated" name="myformL">
+    <form class="card-body">
         <div class="form-group row">
-            <label class="col-md-3 col-form-label" >Language Name</label>
+            <label class="col-md-3 col-form-label" >Magazine Name</label>
             <div class="col-md-7">
-                <input type="text" maxlength="30" placeholder="max characters 30" name="nameL" ng-model="lang.languageName" class="form-control" required>
-                <div class="invalid-feedback">*required</div>
+                <input type="text" maxlength="30" placeholder="max characters 30" ng-model="lang.languageName" class="form-control">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-3 col-form-label" >Language Description</label>
+            <label class="col-md-3 col-form-label" >Magazine Description</label>
             <div class="col-md-7">
-                <input type="text" maxlength="250" placeholder="max characters 250" name="descriptL" ng-model="lang.description" class="form-control" required>
-                <div class="invalid-feedback">*required</div>
+                <input type="text" maxlength="250" placeholder="max characters 250" ng-model="lang.description" class="form-control">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-3 col-form-label"></label>
             <div class="col-md-7" style="height: 100px;">
-                <button type="submit" class="btn btn-primary" ng-show="addlanbtn" ng-click="addLang()"
-                 ng-disabled= !myformL.nameL.$valid||!myformL.descriptL.$valid>Add</button>
-                <button type="submit" class="btn btn-primary" ng-show="lanedit" ng-click="addLang()"
-                 ng-disabled= !myformL.nameL.$valid||!myformL.descriptL.$valid>Update</button>
-                <button type="submit" class="btn btn-outline-danger" ng-show="landelete" ng-click="deleteLang()">Delete</button>
+                <button type="submit" class="btn btn-primary" ng-show="addmagazinebtn" ng-click="addDailyMagazine()">Add</button>
+                <button type="submit" class="btn btn-primary" ng-show="dailymagedit" ng-click="addDailyMagazine()">Update</button>
+                <button type="submit" class="btn btn-outline-danger" ng-show="dailymagdelete" ng-click="deleteDailyMagazine()">Delete</button>
             </div>
         </div>
     </form>
 </div>
-<!------------------------------- end of language  ----------------------------------------------------------->
+<!------------------------------- end of daily magazine ----------------------------------------------------------->
 
-<!-------------------------------------------------------- state------------------------------------------------->
-<div ng-show="stat">
-    <div><button class="btn btn-info lanbutton" ng-click="addState();clearStat()">add region</button></div>
+<!--------------------------------------------------------magazine courses------------------------------------------------->
+<div ng-show="magCourse">
+    <div><button class="btn btn-info lanbutton" ng-click="addMagCourse();clearMagazineCourse()">add Course</button></div>
     <div class="section-body mt-3">
         <div class="container-fluid">
             <div class="tab-content">
@@ -200,6 +196,12 @@
                                         <th>Id</th>
                                         <th>Name</th>
                                         <th>Description</th>
+                                        <th>Cost</th>
+                                        <th>Discount</th>
+                                        <th>Handling Fee</th>
+                                        <th>Position</th>
+                                        <th>Trail Period</th>
+                                        <th>Subscription</th>                                        
                                         <th>Created date</th>
                                         <th>Updated date</th>
                                         <th>Created By</th>
@@ -208,10 +210,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="x in states" ng-click="$parent.statepop=$parent.statedit=$parent.statdelete=true;$parent.stat=$parent.addstatbtn=false;editStat(x)">
-                                        <td>{{x.regionId}}</td>
-                                        <td>{{x.regionName}}</td>
+                                    <tr ng-repeat="x in magazineCourses" ng-click="$parent.magCoursepop=$parent.magCourseedit=$parent.magCoursedelete=true;$parent.magCourse=$parent.addmagCoursebtn=false;editMagazineCourse(x)">
+                                        <td>{{x.magazineCourseId}}</td>
+                                        <td>{{x.magazineCourseName}}</td>
                                         <td>{{x.description}}</td>
+                                        <td>{{x.cost}}</td>
+                                        <td>{{x.discount}}</td>
+                                        <td>{{x.handlingFee}}</td>
+                                        <td>{{x.position}}</td>
+                                        <td>{{x.trailPeriod}}</td>
+                                        <td>{{x.subscription}}</td>
                                         <td>{{x.createdDate}}</td>
                                         <td>{{x.updatedDate}}</td>
                                         <td>{{x.createdBy}}</td>
@@ -254,39 +262,81 @@
         </div>
     </div>
 </div>
-<!---------------- state add ---------------->
-<div class="card" ng-show="statepop">
+<!---------------- magazine course add ---------------->
+<div class="card" ng-show="magCoursepop">
     <div class="card-header">
-        <h3 class="card-title">Regions</h3>
+        <h3 class="card-title">Magazine Course</h3>
         <div class="card-options">
-            <a href="" ng-click="closeState()"><i class="fe fe-x"></i></a>
+            <a href="" ng-click="closeMagazineCourse()"><i class="fe fe-x"></i></a>
         </div>
     </div>
     <form class="card-body was-validated" name="myform">
         <div class="form-group row">
-            <label class="col-md-3 col-form-label">Region Name</label>
+            <label class="col-md-3 col-form-label">Magazine Course Name</label>
             <div class="col-md-7">
-                <input type="text" maxlength="30" name="name" placeholder="max characters 30" ng-model="state.regionName" class="form-control" required>
+                <input type="text" maxlength="30" name="courseName" placeholder="max characters 30" ng-model="magazineCourse.magazineCourseName" class="form-control" required>
                 <div class="invalid-feedback">*required</div>
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-3 col-form-label">Region Description</label>
+            <label class="col-md-3 col-form-label">Magazine Course Description</label>
             <div class="col-md-7">
-                <input type="text" maxlength="250" name="descript" placeholder="max characters 250" ng-model="state.description" class="form-control" required>
+                <input type="text" maxlength="250" name="courseDescription" placeholder="max characters 250" ng-model="magazineCourse.description" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Cost</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="6" placeholder="" name="cost" ng-model="magazineCourse.cost" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Discount</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="6" placeholder="" name="discount" ng-model="magazineCourse.discount" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Handling Fee</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="6" placeholder="" name="handling" ng-model="magazineCourse.handlingFee" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Position</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="6" placeholder="" name="position" ng-model="magazineCourse.position" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Trail Period</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="6" placeholder="" name="trail" ng-model="magazineCourse.trailPeriod" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Subscription</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="6" placeholder="" name="sub" ng-model="magazineCourse.subscription" class="form-control" required>
                 <div class="invalid-feedback">*required</div>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-3 col-form-label"></label>
             <div class="col-md-7" style="height: 100px;">
-                <button type="submit" class="btn btn-primary" ng-show="addstatbtn" ng-click="addStat()" 
-                ng-disabled= !myform.name.$valid||!myform.descript.$valid>Add</button>
-                <button type="submit" class="btn btn-primary" ng-show="statedit" ng-click="addStat()"
-                ng-disabled= !myform.name.$valid||!myform.descript.$valid>Update</button>
-                <button type="submit" class="btn btn-outline-danger" ng-show="statdelete" ng-click="deleteStat()">Delete</button>
+                <button type="submit" class="btn btn-primary" ng-show="addmagCoursebtn" ng-click="addMagazineCourse()" 
+                ng-disabled= !myform.courseName.$valid||!myform.courseDescription.$valid||!myform.trail.$valid||!myform.cost.$valid||!myform.discount.$valid||!myform.handling.$valid||!myform.position.$valid||!myform.sub.$valid>Add</button>
+                <button type="submit" class="btn btn-primary" ng-show="magCourseedit" ng-click="addMagazineCourse()"
+                ng-disabled= !myform.courseName.$valid||!myform.courseDescription.$valid||!myform.trail.$valid||!myform.cost.$valid||!myform.discount.$valid||!myform.handling.$valid||!myform.position.$valid||!myform.sub.$valid>Update</button>
+                <button type="submit" class="btn btn-outline-danger" ng-show="magCoursedelete" ng-click="deleteMagazineCourse()">Delete</button>
             </div>
         </div>
     </form>
 </div>
-<!------------------------------------------------ end of state--------------------------------------------------->
+<!------------------------------------------------ end of magazine course--------------------------------------------------->

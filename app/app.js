@@ -4,6 +4,7 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.store',
+  'myApp.daily_news',
   'myApp.master',
   'myApp.course',
   'myApp.version'

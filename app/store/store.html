@@ -156,24 +156,28 @@
             <a href="" ng-click="closeCategory()"><i class="fe fe-x"></i></a>
         </div>
     </div>
-    <form class="card-body">
+    <form class="card-body was-validated" name="myform">
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Category Name</label>
             <div class="col-md-7">
-                <input type="text" maxlength="30" placeholder="max characters 30" class="form-control" ng-model="cat.categoryName">
+                <input type="text" maxlength="30" name="name" placeholder="max characters 30" class="form-control" ng-model="cat.categoryName" required>
+                <div class="invalid-feedback">*required</div>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Category Description</label>
             <div class="col-md-7">
-                <input type="text" maxlength="250" placeholder="max characters 250" class="form-control" ng-model="cat.description">
+                <input type="text" maxlength="250" name="descript" placeholder="max characters 250" class="form-control" ng-model="cat.description" required>
+                <div class="invalid-feedback">*required</div>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-3 col-form-label"></label>
             <div class="col-md-7" style="height: 100px;">
-                <button type="submit" class="btn btn-primary" ng-show="addcatbtn" ng-click="addCat()">Add</button>
-                <button type="submit" class="btn btn-primary" ng-show="catedit" ng-click="addCat()" >Update</button>
+                <button type="submit" class="btn btn-primary" ng-show="addcatbtn" ng-click="addCat()"
+                ng-disabled=!myform.name.$valid||!myform.descript.$valid>Add</button>
+                <button type="submit" class="btn btn-primary" ng-show="catedit" ng-click="addCat()"
+                ng-disabled=!myform.name.$valid||!myform.descript.$valid>Update</button>
                 <button type="submit" class="btn btn-outline-danger" ng-show="catdelete" ng-click="deleteCat()">Delete</button>
             </div>
         </div>
@@ -257,24 +261,28 @@
             <a href="" ng-click="closeMag()"><i class="fe fe-x"></i></a>
         </div>
     </div>
-    <form class="card-body">
+    <form class="card-body was-validated" name="myformB">
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Book / Magazine Name</label>
             <div class="col-md-7">
-                <input type="text" maxlength="30" placeholder="max characters 30" ng-model="book.magazineCourseName" class="form-control">
+                <input type="text" maxlength="30" name="nameB" placeholder="max characters 30" ng-model="book.magazineCourseName" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Book / Magazine Description</label>
             <div class="col-md-7">
-                <input type="text" maxlength="250" placeholder="max characters 250" ng-model="book.description" class="form-control">
+                <input type="text" maxlength="250" name="descriptB" placeholder="max characters 250" ng-model="book.description" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-3 col-form-label"></label>
             <div class="col-md-7" style="height: 100px;">
-                <button type="submit" class="btn btn-primary" ng-show="addbomagbtn" ng-click="addbooks()">Add</button>
-                <button type="submit" class="btn btn-primary" ng-show="bomagedit" ng-click="addbooks()">Update</button>
+                <button type="submit" class="btn btn-primary" ng-show="addbomagbtn" ng-click="addbooks()"
+                ng-disabled=!myformB.nameB.$valid||!myformB.descriptB.$valid>Add</button>
+                <button type="submit" class="btn btn-primary" ng-show="bomagedit" ng-click="addbooks()"
+                ng-disabled=!myformB.nameB.$valid||!myformB.descriptB.$valid>Update</button>
                 <button type="submit" class="btn btn-outline-danger" ng-show="bomagdelete" ng-click="deletebooks()">Delete</button>
             </div>
         </div>
