@@ -1,0 +1,356 @@
+
+ <div class="section-body sectioncss">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="header-action">
+                    <ol class="breadcrumb page-breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">JNANA SAADHANA</a></li>
+                        <!-- <li class="breadcrumb-item"><a href="#">University</a></li> -->
+                        <li class="breadcrumb-item active" aria-current="page">Courses</li>
+                    </ol>
+                </div>
+                <!-- <ul class="nav nav-tabs page-header-tab">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#admin-Dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#admin-Activity">Activity</a></li>
+                </ul> -->
+            </div>
+        </div>
+    </div>
+<div class="row clearfix col-12 cardcss">
+    <!-- <div class="col-3">
+        <div class="card">
+            <div class="card-body ribbon">
+                <div class="ribbon-box green" data-toggle="tooltip" title="" 
+                data-original-title="Total Earnings">5555</div>
+                <a href="professors.html" class="my_sort_cut text-muted">
+                    <i class="fa fa-rupee"></i>
+                    <span>Total Earnings</span>
+                </a>
+            </div>
+        </div>
+    </div> -->
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body ribbon">
+                <div class="ribbon-box orange" data-toggle="tooltip" title="" 
+                data-original-title="Category">5</div>
+                <a href="professors.html" class="my_sort_cut text-muted">
+                    <i class="fa fa-cart-plus"></i>
+                    <span>Total Courses: {{CourseTotalItems}}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body ribbon">
+                <div class="ribbon-box green" data-toggle="tooltip" title="" 
+                data-original-title="No of Books">5</div>
+                <a href="professors.html" class="my_sort_cut text-muted">
+                    <i class="fa fa-book"></i>
+                    <span>Total Modules: {{moduleTotalItems}}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col-3">
+        <div class="card">
+            <div class="card-body ribbon">
+                <div class="ribbon-box orange" data-toggle="tooltip" title="" 
+                data-original-title="No of Magazine">5</div>
+                <a href="professors.html" class="my_sort_cut text-muted">
+                    <i class="fa fa-newspaper-o"></i>
+                    <span>Total Magazine</span>
+                </a>
+            </div>
+        </div>
+    </div> -->
+</div>
+<div class="row storerow col-12">
+<div class="col-sm-4">
+    <button class="btn btn-outline-info btn-block" ng-click="loadCourses()">Courses</button>
+</div>
+<div class="col-sm-4">
+   <button class="btn btn-outline-info btn-block" ng-click="loadModules()">Modules</button> 
+</div>
+<!-- <div class="col-sm-3">
+    <button class="btn btn-outline-info btn-block">Books / Magazine</button> 
+ </div>  -->
+ <div class="col-sm-4">
+    <button class="btn btn-outline-info btn-block" ng-click="">Topics</button> 
+ </div>
+</div>
+<!------------------------------------------------------- courses -------------------------------------------->
+<div ng-show="courseShow">
+    <div><button class="btn btn-info lanbutton" ng-click="addCourse();clearCourse()">add Course</button></div>
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="tab-content">
+                <div class="tab-pane active" id="Dep-all">
+                    <div class="table-responsive">
+                        <div class="table-responsive card">
+                            <table class="table table-hover table-striped table-vcenter text-nowrap mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>MRP</th>
+                                        <th>Discount</th>
+                                        <th>Handling Fee</th>
+                                        <th>Position</th>
+                                        <th>Trail Period</th>
+                                        <th>Subscription</th>                                        
+                                        <th>Created date</th>
+                                        <th>Updated date</th>
+                                        <th>Created By</th>
+                                        <th>Updated By</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in courses" ng-click="editCourse(x);$parent.coursepop=true;$parent.courseedit=$parent.coursedelete=true;$parent.courseShow=$parent.addcoursebtn=false;">
+                                        <td>{{x.courseId}}</td>
+                                        <td>{{x.courseName}}</td>
+                                        <td>{{x.description}}</td>
+                                        <td>{{x.courseMrp}}</td>
+                                        <td>{{x.discount}}</td>
+                                        <td>{{x.handlingFee}}</td>
+                                        <td>{{x.position}}</td>
+                                        <td>{{x.trailPeriod}}</td>
+                                        <td>{{x.subscription}}</td>
+                                        <td>{{x.createdDate}}</td>
+                                        <td>{{x.updatedDate}}</td>
+                                        <td>{{x.createdBy}}</td>
+                                        <td>{{x.updatedBy}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-icon btn-sm" title="View"><i class="fa fa-eye"></i></button>
+                                            <button type="button" class="btn btn-icon btn-sm" title="Edit"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                                <tfoot>  
+                                    <tr>  
+                                        <td align="center" colspan="6   ">  
+                                            <span class="form-group pull-left page-size form-inline">  
+                                                <select id="ddlPageSize" class="form-control control-color"  
+                                                        ng-model="CoursePageSize"  
+                                                        ng-change="CourseChangePageSize()">
+                                                    <option value="2">2</option>      
+                                                    <option value="5">5</option>  
+                                                    <option value="10">10</option>  
+                                                    <option value="25">25</option>  
+                                                    <option value="50">50</option>  
+                                                </select>  
+                                            </span>  
+                                            <div class="pull-right pagination">
+                                                <pagination total-items="CourseTotalItems" ng-model="CoursePageIndex" items-per-page="CoursePageSize" ng-change="CoursePageChange()"></pagination>
+                                                <!-- <pagination total-items="totalItemsL" ng-change="pageChange()" items-per-page="pageSize" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPagesL"></pagination> -->
+                                                <!-- <a class="btn">Page: {{pageIndex}} / {{numPagesL}} {{totalItemsL}}</a> -->
+                                            </div>
+                                        </td>  
+                                    </tr>  
+                                </tfoot>  
+                            </table>
+                        </div>        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---------------- course add ---------------->
+<div class="card" ng-show="coursepop">
+    <div class="card-header">
+        <h3 class="card-title">Courses</h3>
+        <div class="card-options">
+            <a href="" ng-click="closeCourse()"><i class="fe fe-x"></i></a>
+        </div>
+    </div>
+    <form class="card-body was-validated" name="courseform">
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Course Name</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="30" name="coursesName" placeholder="max characters 30" ng-model="course.courseName" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">MRP</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="10" placeholder="" name="coursesmrp" ng-model="course.courseMrp" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Discount</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="10" placeholder="" name="coursesdiscount" ng-model="course.discount" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Handling Fee</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="10" placeholder="" name="courseshandling" ng-model="course.handlingFee" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Position</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="10" placeholder="" name="coursesposition" ng-model="course.position" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Trail Period</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="10" placeholder="" name="coursestrail" ng-model="course.trailPeriod" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Subscription</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="10" placeholder="" name="coursessub" ng-model="course.subscription" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Description</label>
+            <div class="col-md-7">
+                <textarea type="text" maxlength="250" name="coursesDescription" placeholder="max characters 250" ng-model="course.description" class="form-control" required></textarea>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label"></label>
+            <div class="col-md-7" style="height: 100px;">
+                <button type="submit" class="btn btn-primary" ng-show="addcoursebtn" ng-click="addTheCourse()" 
+                ng-disabled= !courseform.coursesName.$valid||!courseform.coursesDescription.$valid||!courseform.coursestrail.$valid||!courseform.coursesmrp.$valid||!courseform.coursesdiscount.$valid||!courseform.courseshandling.$valid||!courseform.coursesposition.$valid||!courseform.coursessub.$valid>Add</button>
+                <button type="submit" class="btn btn-primary" ng-show="courseedit" ng-click="addTheCourse()"
+                ng-disabled= !courseform.coursesName.$valid||!courseform.coursesDescription.$valid||!courseform.coursestrail.$valid||!courseform.coursesmrp.$valid||!courseform.coursesdiscount.$valid||!courseform.courseshandling.$valid||!courseform.coursesposition.$valid||!courseform.coursessub.$valid>Update</button>
+                <button type="submit" class="btn btn-outline-danger" ng-show="coursedelete" ng-click="deleteCourse()">Delete</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!------------------------------- end of course  ----------------------------------------------------------->
+
+<!-------------------------------------------------------- Module------------------------------------------------->
+<div ng-show="moduleSection">
+    <div><button class="btn btn-info lanbutton" ng-click="addmodule();clearmodule()">add Module</button></div>
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="tab-content">
+                <div class="tab-pane active" id="Dep-all">
+                    <div class="table-responsive">
+                        <div class="table-responsive card">
+                            <table class="table table-hover table-striped table-vcenter text-nowrap mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Position</th>
+                                        <th>Created date</th>
+                                        <th>Updated date</th>
+                                        <th>Created By</th>
+                                        <th>Updated By</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in modules" ng-click="$parent.modulepop=$parent.moduleedit=$parent.moduledelete=true;$parent.moduleSection=$parent.addmodulebtn=false;editmodule(x)">
+                                        <td>{{x.moduleId}}</td>
+                                        <td>{{x.moduleName}}</td>
+                                        <td>{{x.description}}</td>
+                                        <td>{{x.position}}</td>
+                                        <td>{{x.createdDate}}</td>
+                                        <td>{{x.updatedDate}}</td>
+                                        <td>{{x.createdBy}}</td>
+                                        <td>{{x.updatedBy}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-icon btn-sm" title="View"><i class="fa fa-eye"></i></button>
+                                            <button type="button" class="btn btn-icon btn-sm" title="Edit"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>  
+                                    <tr>  
+                                        <td align="center" colspan="6   ">  
+                                            <span class="form-group pull-left page-size form-inline">  
+                                                <select id="ddlPageSize" class="form-control control-color"  
+                                                        ng-model="modulePageSize"  
+                                                        ng-change="moduleChangePageSize()"> 
+                                                    <option value="2">2</option> 
+                                                    <option value="5">5</option>  
+                                                    <option value="10">10</option>  
+                                                    <option value="25">25</option>  
+                                                    <option value="50">50</option>  
+                                                </select>  
+                                            </span>  
+                                            <div class="pull-right pagination">
+                                                <pagination total-items="moduleTotalItems" ng-model="modulePageIndex" items-per-page="modulePageSize" ng-change="modulePageChange()"></pagination>
+                                                <!-- <pagination total-items="totalItemsL" ng-change="pageChange()" items-per-page="pageSize" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPagesL"></pagination> -->
+                                                <!-- <a class="btn">Page: {{pageIndex}} / {{numPagesL}} {{totalItemsL}}</a> -->
+                                            </div>
+                                        </td>  
+                                    </tr>  
+                                </tfoot>  
+                            </table>
+                        </div>        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!---------------- module add ---------------->
+<div class="card" ng-show="modulepop">
+    <div class="card-header">
+        <h3 class="card-title">Modules</h3>
+        <div class="card-options">
+            <a href="" ng-click="closemodule()"><i class="fe fe-x"></i></a>
+        </div>
+    </div>
+    <form class="card-body was-validated" name="moduleform">
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Module Name</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="30" name="modulename" placeholder="max characters 30" ng-model="module.moduleName" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Position</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="10" name="moduleposition" placeholder="" ng-model="module.position" class="form-control" required>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Module Description</label>
+            <div class="col-md-7">
+                <textarea type="text" maxlength="250" name="moduledescript" placeholder="max characters 250" ng-model="module.description" class="form-control" required></textarea>
+                <div class="invalid-feedback">*required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label"></label>
+            <div class="col-md-7" style="height: 100px;">
+                <button type="submit" class="btn btn-primary" ng-show="addmodulebtn" ng-click="addThemodule()" 
+                ng-disabled= !moduleform.modulename.$valid||!moduleform.moduledescript.$valid||!moduleform.moduleposition.$valid>Add</button>
+                <button type="submit" class="btn btn-primary" ng-show="moduleedit" ng-click="addThemodule()"
+                ng-disabled= !moduleform.modulename.$valid||!moduleform.moduledescript.$valid||!moduleform.moduleposition.$valid>Update</button>
+                <button type="submit" class="btn btn-outline-danger" ng-show="moduledelete" ng-click="deletemodule()">Delete</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!------------------------------------------------ end of state--------------------------------------------------->

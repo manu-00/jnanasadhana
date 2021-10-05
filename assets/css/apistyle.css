@@ -1,0 +1,13 @@
+.storerow{
+justify-content: center;
+}
+.btn-block{
+    margin: 25px 0 0 25px;
+    width: 80%;
+}
+.lanhover:hover{
+background-color:black;
+}
+.lanbutton{
+    margin: 2% 0 0 80%;
+}
